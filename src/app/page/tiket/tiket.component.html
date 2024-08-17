@@ -1,0 +1,375 @@
+<app-header></app-header>
+
+<div class="dash-container">
+   
+  <div class="heading">
+    <button class="bt-second w-initial" *ngIf="isChefScrum()" (click)="showModal()">
+      Ajouter un Ticket
+    </button>
+  </div>
+
+  <form class="filter-items">
+    <div class="form-group">
+      <label>Listes des taches </label>
+    </div>
+  </form>
+  
+  <div class="line-table mb-4"></div>
+    <div class="line-table mb-4"></div>
+    <div cdkDropListGroup>
+      <div class="row tickets-list">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+      
+          <div class="cards-tickets">
+            <h2 class="heading">Nouveau:&nbsp;</h2>
+          <div id ="New"cdkDropList [cdkDropListData]="ticket_New" 
+          class="example-list-vide  m-0 p-0"
+          (cdkDropListDropped)="drop($event)">
+            <ng-contanier *ngFor="let item of ticket_New; let index = index" cdkDrag>
+              <div class="card-ticket">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">           
+                     <strong>Nom Ticket :</strong>&nbsp;
+                  <span>{{item.title}}</span> 
+                </div>
+                </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                  <strong>Date création :</strong>&nbsp;
+      
+                  <span>{{item.startDate | date : 'dd MMM YYYY'}}</span>
+                </div>
+                </div>
+                    
+                
+                <div class="d-flex 
+             justify-content-between">
+             
+                  <span>
+                    <strong>Durée de fin : </strong>&nbsp;
+                    {{item.endDate | date : 'dd MMM YYYY'}}
+                  </span>
+                </div>
+                <p style="line-height: 1.5; max-width: 100%; word-wrap: break-word; overflow: hidden;">
+                  <label><strong>Description :</strong></label>&nbsp;
+                  <span>{{item.description}}</span>
+                </p>
+
+                <div class="d-flex align-items-center">           
+                  <strong>Utilisateur :</strong>&nbsp;
+                  <span>{{item.assignedUser}}</span> 
+                </div>
+                  <br>
+      
+                  <div class="flex-container">
+                    <p style="line-height: 1.5;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <span class="new">Nouveau</span>
+                    </p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-trash" style="color: red; cursor: pointer;" (click)="deleteItem(item.id)"></i>
+                  </div>
+                  
+                 
+                    <div>
+                      <div class="actions-table d-flex gap-3">
+                
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p style="line-height: 1.5;" data-bs-toggle="modal" data-bs-target="#exampleModalToggle1" *ngIf="isMember()"><span class="new1">
+                      Add Cmtr
+                      </span>
+                    </div>
+                </div>
+                </div>
+            </ng-contanier>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+      
+          <div class="cards-tickets">
+            <h2 class="heading">Encours:</h2>
+            <div id="Pending" cdkDropList [cdkDropListData]="ticket_Pending" class="example-list" (cdkDropListDropped)="drop($event)">
+
+            <ng-contanier *ngFor="let item of ticket_Pending; let index = index" cdkDrag>
+              <div class="card-ticket">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">           
+                     <strong>Nom Ticket :</strong>&nbsp;
+                  <span>{{item.title}}</span> 
+                </div>
+                </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                  <strong>Date création :</strong>&nbsp;
+      
+                  <span>{{item.startDate | date : 'dd MMM YYYY'}}</span>
+                </div>
+                </div>
+                    
+                
+                <div class="d-flex 
+             justify-content-between">
+             
+                  <span>
+                    <strong>Durée de fin : </strong>&nbsp;
+                    {{item.endDate | date : 'dd MMM YYYY'}}
+                  </span>
+                </div>
+                <p style="line-height: 1.5; max-width: 100%; word-wrap: break-word; overflow: hidden;">
+                  <label><strong>Description :</strong></label>&nbsp;
+                  <span>{{item.description}}</span>
+                </p>
+                <div class="d-flex align-items-center">           
+                  <strong>Utilisateur :</strong>&nbsp;
+                  <span>{{item.assignedUser}}</span> 
+                </div>
+                  <br>
+      
+                   <p style="line-height: 1.5;"><span class="new">
+                    Encours
+                    </span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-trash" style="color: red; cursor: pointer;" (click)="deleteItem(item.id)" ></i>
+
+                  </p>
+                    <div>
+                      <div class="actions-table d-flex gap-3">
+                
+  <!--                   <span title="Supprimer" (click)="showDeleteConfirm( item.id || 0)">
+                      <i class="ci-trash_full"></i>
+                    </span> -->
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p style="line-height: 1.5;" data-bs-toggle="modal" data-bs-target="#exampleModalToggle1" *ngIf="isMember()"><span class="new1">
+                      Add Cmtr
+                      </span>
+                    </div>
+                </div>
+                </div>
+            </ng-contanier>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+      
+          <div class="cards-tickets">
+            <h2 class="heading">Bloqué:</h2>
+            <div id="BLOQUED" cdkDropList [cdkDropListData]="ticket_Blocked" class="example-list" (cdkDropListDropped)="drop($event)">
+
+            <ng-contanier *ngFor="let item of ticket_Blocked; let index = index" cdkDrag>
+              <div class="card-ticket">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">           
+                     <strong>Nom Ticket :</strong>&nbsp;
+                  <span>{{item.title}}</span> 
+                </div>
+                </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                  <strong>Date création :</strong>&nbsp;
+      
+                  <span>{{item.startDate | date : 'dd MMM YYYY'}}</span>
+                </div>
+                </div>
+                    
+                
+                <div class="d-flex 
+             justify-content-between">
+             
+                  <span>
+                    <strong>Durée de fin : </strong>&nbsp;
+                    {{item.endDate | date : 'dd MMM YYYY'}}
+                  </span>
+                </div>
+                <p style="line-height: 1.5; max-width: 100%; word-wrap: break-word; overflow: hidden;">
+                  <label><strong>Description :</strong></label>&nbsp;
+                  <span>{{item.description}}</span>
+                </p>
+                <div class="d-flex align-items-center">           
+                  <strong>Utilisateur :</strong>&nbsp;
+                  <span>{{item.assignedUser}}</span> 
+                </div>
+                  <br>
+      
+                   <p style="line-height: 1.5;"><span class="new">
+                    Bloqué
+                    </span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-trash" style="color: red; cursor: pointer;" (click)="deleteItem(item.id)" ></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fa-solid fa-circle-xmark" style="color: red; cursor: pointer;" *ngIf="isMember()" (click)="showRefus()"></i>&nbsp;
+
+                  </p>
+                    <div>
+                      <div class="actions-table d-flex gap-3">
+                
+  <!--                   <span title="Supprimer" (click)="showDeleteConfirm( item.id || 0)">
+                      <i class="ci-trash_full"></i>
+                    </span> -->
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p style="line-height: 1.5;" data-bs-toggle="modal" data-bs-target="#exampleModalToggle1" *ngIf="isMember()"><span class="new1">
+                      Add Cmtr
+                      </span>
+                    </div>
+                </div>
+                </div>
+            </ng-contanier>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+      
+          <div class="cards-tickets">
+            <h2 class="heading">Terminé:&nbsp; </h2>
+            <div id="Finished" *ngIf = "isChefScrum" cdkDropList [cdkDropListData]="ticket_Finished" class="example-list" (cdkDropListDropped)="drop($event)">
+
+            <div *ngFor="let item of ticket_Finished; let index = index" cdkDrag>
+              <div class="card-ticket" [draggable]="isChefScrum">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">           
+                     <strong>Nom Ticket :</strong>&nbsp;
+                  <span>{{item.title}}</span> 
+                </div>
+                </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                  <strong>Date création :</strong>&nbsp;
+      
+                  <span>{{item.startDate | date : 'dd MMM YYYY'}}</span>
+                </div>
+                </div>
+                    
+                
+                <div class="d-flex 
+             justify-content-between">
+             
+                  <span>
+                    <strong>Durée de fin : </strong>&nbsp;
+                    {{item.endDate | date : 'dd MMM YYYY'}}
+                  </span>
+                </div>
+                <p style="line-height: 1.5; max-width: 100%; word-wrap: break-word; overflow: hidden;">
+                  <label><strong>Description :</strong></label>&nbsp;
+                  <span>{{item.description}}</span>
+                </p>
+                <div class="d-flex align-items-center">           
+                  <strong>Utilisateur :</strong>&nbsp;
+                  <span>{{item.assignedUser}}</span> 
+                </div>
+                  <br>
+      
+                   <p style="line-height: 1.5;" ><span class="new">
+                    Terminé
+                    </span>
+                  
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-trash"  style="color: red; cursor: pointer;" (click)="deleteItem(item.id)" ></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fa-solid fa-circle-xmark" style="color: red; cursor: pointer;" *ngIf="isChefScrum()" (click)="showRefus()"></i>&nbsp;
+                    <i class="fa-sharp fa-solid fa-circle-check" style="color: green; cursor: pointer;" *ngIf=" isChefScrum()" (click)="showSuccess()"></i>
+                    <i class="fa-sharp fa-solid fa-circle-check" style="color: green; cursor: pointer;" *ngIf=" isMember()" (click)="showSuccess()"></i>   
+                    
+                                   
+                 
+                  </p>
+                    <div>
+                      <div class="actions-table d-flex gap-3">
+                
+  <!--                   <span title="Supprimer" (click)="showDeleteConfirm( item.id || 0)">
+                      <i class="ci-trash_full"></i>
+                    </span> -->
+
+                    
+                    </div>
+                </div>
+                </div>
+      </div>
+      </div>
+      </div>
+        </div>
+      </div>
+      </div>
+      
+      <ng-template #totalTemplate let-total>Total {{ total }} items</ng-template>
+      <app-add-ticket [isVisible]="isVisible" (handleVisible)="handleCancel()"></app-add-ticket>
+
+    </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Détails ticket</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngFor="let item of ticket_New;" class="ticket-detail">
+            <div class="ticket-item">
+              <strong>Nom Ticket :</strong>&nbsp;<span>{{item.title}}</span>
+            </div>
+            <div class="ticket-item">
+              <strong>Date création :</strong>&nbsp;<span>{{item.startDate | date : 'dd MMM YYYY'}}</span>
+            </div>
+            <div class="ticket-item">
+              <strong>Durée de fin :</strong>&nbsp;<span>{{item.endDate | date : 'dd MMM YYYY'}}</span>
+            </div>
+            <div class="ticket-item">
+              <strong>Description :</strong>&nbsp;<span>{{item.description}}</span>
+            </div>
+            <div class="ticket-item">
+              <strong>Utilisateur :</strong>&nbsp;<span>{{item.assignedUser}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <div class="modal fade" id="exampleModalToggle1" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Ajouter Commentaire</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="commentForm">
+            <div class="mb-3">
+              <label for="commentText" class="form-label">Commentaire</label>
+              <textarea class="form-control" id="commentText" rows="4" required></textarea>
+            </div>
+            <div >
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterCmntr()">Envoyer</button>
+          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

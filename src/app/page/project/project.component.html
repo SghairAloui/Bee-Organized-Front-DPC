@@ -1,0 +1,86 @@
+<app-header></app-header>
+
+<div class="dash-container">
+    <div class="heading">
+      <a *ngIf="isChefScrum()" href="/projects/ajout" class="bt-second w-initial" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+        Ajouter un projet
+      </a>
+    </div>
+  
+    <form class="filter-items">
+      <div class="form-group">
+        <label>Listes des projets</label>
+      </div>
+    </form>
+    
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom Projet</th>
+            <th>Description</th>
+            <th>Chef de projet</th>
+            <th>Utilisateurs affectés</th>
+            <th *ngIf="isChefScrum()">Actions</th>
+            <th *ngIf="isMember()">Statut : </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects">
+            <td>
+              <!-- Wrap project name in anchor tag -->
+              <a [routerLink]="['/tickets', project.id]" style="color: #9672F9; font-weight: bold;">{{ project.title }}</a>
+            </td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.scrumMaster }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let user of project.assignedUsers">{{ user }}</li>
+              </ul>
+            </td>
+            <td>
+              <i class="fas fa-edit" style="color: #9672F9; cursor: pointer;" *ngIf="isChefScrum()" (click)="navigateToModification(project)" ></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fas fa-trash" style="color: red; cursor: pointer;" *ngIf="isChefScrum()" (click)="deleteItem(project.id)" ></i>
+
+              
+          <p style="color: #9672F9; font-weight: bold;" *ngIf="isMember()"> En cours </p>
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+<br><br>
+<div class="table-container">
+   
+    <div class="card-container" *ngFor="let project of projects">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Nom Projet : <a [routerLink]="['/tickets', project.id]" style="color: #9672F9; font-weight: bold;">{{ project.title }}</a></h5>
+          <p class="card-text"><strong>Description :</strong>  {{ project.description }}</p>
+          <p class="card-text"><strong>Chef de projet :</strong> {{ project.scrumMaster }}</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Utilisateurs affectés :</strong>
+              <ul> 
+                <li *ngFor="let user of project.assignedUsers | slice:0:1">{{ user }}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <strong *ngIf="isChefScrum()">Actions :</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fas fa-edit" style="color: #9672F9; cursor: pointer;" *ngIf="isChefScrum()" (click)="navigateToModification(project)"></i>
+         &nbsp;&nbsp;&nbsp;&nbsp;
+          <i class="fas fa-trash" style="color: red; cursor: pointer;" *ngIf="isChefScrum()" (click)="deleteItem(project.id)"></i>
+
+          <strong *ngIf="isMember()" style="display: block; text-align: center;">Statut :</strong>
+          <p style="color: #9672F9; font-weight: bold; text-align: center;" *ngIf="isMember()"> En cours </p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>

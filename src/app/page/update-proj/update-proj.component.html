@@ -1,0 +1,110 @@
+<div class="form-container">
+
+<form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div class="form-row">
+      <div class="form-group mt-5">
+        <label class="bold-label">Titre de projet :</label>
+  
+        <nz-form-item>
+            <nz-input-group>
+              <input
+              formControlName="title"
+                nz-input
+                name="title"
+                placeholder="titre de projet"
+              />
+            </nz-input-group>
+        </nz-form-item>
+      </div>
+      <div class="form-group mt-5">
+        <label class="bold-label">Description de projet :</label>
+  
+        <nz-form-item>
+            <nz-input-group>
+              <input
+              formControlName="description"
+                nz-input
+                name="description"
+                placeholder="Description de projet"
+              />
+            </nz-input-group>
+        </nz-form-item>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="bold-label">Chef de projet :</label>
+      <nz-form-item>
+          <nz-input-group>
+            <input
+            formControlName="scrumMaster"
+              nz-input
+              name="scrumMaster"
+              placeholder="Sélectionner chef de projet"
+            />
+          </nz-input-group>
+      </nz-form-item>
+    </div>
+    <div class="form-group">
+          <label class="bold-label">Utilisateurs affectés :</label>
+
+          <nz-form-item>
+            <nz-select
+
+              nzPlaceHolder="Sélectionner un utilisateur" 
+              nz-input
+              formControlName="assignedUsers" 
+              name="assignedUsers" 
+              nzMode="multiple"
+                >
+              <ng-container *ngFor="let user of users">
+                <nz-option
+                
+                  [nzLabel]="user.name || null"
+                  [nzValue]="user.userEmail"
+                >
+              </nz-option>
+              </ng-container>
+            </nz-select>
+          </nz-form-item>
+    </div>
+    <div class="form-group">
+        <label class="bold-label">Date debut de projet :</label>
+    
+        <nz-form-item>
+            <nz-input-group>
+              <input
+              formControlName="startDate"
+                nz-input
+                name="startDate"
+                placeholder="Date debut"
+              />
+            </nz-input-group>
+        </nz-form-item>
+      </div>
+  
+      <div class="form-group">
+        <label class="bold-label">Date fin de projet :</label>
+    
+        <nz-form-item>
+            <nz-input-group>
+              <input
+              formControlName="endDate"
+                nz-input
+                name="endDate"
+                placeholder="Date fin"
+              />
+            </nz-input-group>
+        </nz-form-item>
+      </div>
+  
+    <div class="d-flex w-100">
+      <div class="d-flex justify-content-end w-100 ms-3">
+        <button type="submit" class="bt-primaryy mt-3 w-50" >
+          <ng-container *ngIf="!loading">Modifier</ng-container>
+          <ng-container *ngIf="loading">
+          </ng-container>
+        </button>
+      </div>
+    </div>
+  </form>
+  </div>

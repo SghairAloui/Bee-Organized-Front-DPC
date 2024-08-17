@@ -1,0 +1,388 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+*{
+    margin: 0 ;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif ;
+
+}
+
+body{
+    display: flex;
+}
+.sidebar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 115px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    z-index: 1010;
+    background: rgba(113, 99, 186, 255);
+
+}
+.sidebar:hover{
+    width: 240px;
+    transition: 0.5s;
+}
+
+.logo{
+    height: 80px;
+    padding: 16px;
+}
+
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+
+}
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover,
+.active {
+    background: #e0e0e058;
+}
+
+.menu a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+
+
+
+
+
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(57, 57, 161, 0.5); /* Assurez-vous que la couleur du fond est celle que vous souhaitez */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour donner de la profondeur */
+  position: fixed; /* Fixe le header en haut de la page */
+  top: 0; /* En haut de la page */
+  left: 0;
+  right: 0; /* S'étend sur toute la largeur */
+  z-index: 1001; /* S'assure que le header reste au-dessus des autres contenus */
+}
+
+body {
+  margin-top: 0px; /* Ajoutez un espace au haut du body pour ne pas que le contenu soit caché derrière le header */
+  padding: 0; /* Ajustez selon vos besoins */
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.header-menu, .header-icons {
+  display: flex;
+  align-items: center;
+  padding: 200;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-bar i {
+  position: absolute;
+  left: 10px;
+  color: #ccc;
+}
+
+.search-bar input {
+  padding: 8px 8px 8px 30px; /* Espace pour l'icône à gauche */
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Bordures arrondies pour le champ de recherche */
+  outline: none;
+  width: 200px; /* Largeur spécifique pour le champ de recherche */
+}
+
+.header-icons i {
+  margin: 0 10px;
+  cursor: pointer;
+  color: #666;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 7px;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+
+.navbar {
+    position: fixed;
+}
+
+
+.container {
+  margin-top: 70px; /* Ajustez cette valeur selon vos besoins */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body{
+  background-color:#eee;
+  margin-top:20px;
+}
+.border-5, .border-w-5 {
+  border-width: 5px !important;
+}
+.border-white {
+  border: 1px solid transparent;
+  border-color: #fff !important;
+}
+hr.hr-primary {
+  border-top-color: #CC164D!important;
+}
+em {
+  font-style: italic;
+}
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+  width: 100%;
+  margin-top:200px;
+  color: #555;
+  background: #fff;
+  padding: 25px;
+  font-weight: 300;
+  display: block;
+  position: absolute;
+  float: left;
+  vertical-align: middle;
+}
+  
+
+.footer p{
+  margin-bottom: 0;
+}
+footer p a{
+  color: #555;
+  font-weight: 400;
+}
+
+footer p a:hover{
+  color: rgb(28, 28, 187,0.5); 
+  text-decoration: none;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 20px;
+background-color: rgba(57, 57, 161, 0.5); /* Assurez-vous que la couleur du fond est celle que vous souhaitez */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour donner de la profondeur */
+position: fixed; /* Fixe le header en haut de la page */
+top: 0; /* En haut de la page */
+left: 0;
+right: 0; /* S'étend sur toute la largeur */
+z-index: 1001; /* S'assure que le header reste au-dessus des autres contenus */
+}
+
+body {
+margin-top: 0px; /* Ajoutez un espace au haut du body pour ne pas que le contenu soit caché derrière le header */
+padding: 0; /* Ajustez selon vos besoins */
+box-sizing: border-box;
+background-color: #fff;
+}
+
+.header-menu, .header-icons {
+display: flex;
+align-items: center;
+padding: 200;
+}
+
+.search-bar {
+display: flex;
+align-items: center;
+position: relative;
+}
+
+.search-bar i {
+position: absolute;
+left: 10px;
+color: #ccc;
+}
+
+.search-bar input {
+padding: 8px 8px 8px 30px; /* Espace pour l'icône à gauche */
+border: 1px solid #ccc;
+border-radius: 20px; /* Bordures arrondies pour le champ de recherche */
+outline: none;
+width: 200px; /* Largeur spécifique pour le champ de recherche */
+}
+
+.header-icons i {
+margin: 0 10px;
+cursor: pointer;
+color: #666;
+}
+
+.user-info {
+display: flex;
+align-items: center;
+margin-left: 7px;
+}
+
+.user-avatar {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+margin-left: 10px;
+}
+
+
+.navbar {
+  position: fixed;
+}
+
+.sidebar {
+  position: fixed;
+  background-color: rgba(57, 57, 161, 0.5); 
+}
+
+
+
+
+.container.py-7 {
+  margin-top: 70px; /* Décalage vers le bas */
+  margin-left: 230px; /* Décalage vers la droite */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: 'Poppins', sans-serif; /* Utilisation de la police Poppins */
+  color: #333; /* Couleur du texte */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif; /* Utilisation de la police Playfair Display pour les titres */
+  font-weight: bold; /* Gras pour les titres */
+  color: #444; /* Couleur des titres */
+}
+
+p {
+  font-size: 16px; /* Taille de la police pour les paragraphes */
+  line-height: 1.6; /* Hauteur de ligne pour une lisibilité accrue */
+}
+
+a {
+  color: #007bff; /* Couleur des liens */
+  text-decoration: none; /* Pas de soulignement par défaut */
+}
+
+a:hover {
+  text-decoration: underline; /* Soulignement au survol */
+}
+
+
+
+
+

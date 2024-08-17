@@ -1,0 +1,40 @@
+html, body {
+    height:100%;
+}
+body {
+  margin: 0;
+}
+
+.container-fluid {
+    height: 100%;
+}
+
+.row {
+  height: 100%; 
+}
+
+
+.col-md-6 {
+  float:left;
+  width: 50%;
+  min-height: 100%;
+}
+
+.left {
+background-color: #dbdbdb;
+}
+ 
+.right {
+background-color: #dbdbdb;
+}
+.animate-form {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  
+
+  }
+

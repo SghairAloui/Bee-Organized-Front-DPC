@@ -1,0 +1,70 @@
+<div class=" login ">
+    <h1 class="form-title ">
+      Connectez-vous
+    </h1>
+      <h3 class="form-title mt-3">
+        Connectez-vous à votre compte
+        <br />
+        en saisissant votre email et votre mot de passe
+      </h3>
+    
+      <form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div class="form-group mt-5">
+          <label>Adresse email</label>
+    
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Email est obligatoire!">
+              <nz-input-group>
+                <input
+                  formControlName="userEmail"
+                  nz-input
+                  name="userEmail"
+                  placeholder="exemple@mail.com"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="form-group mt-5">
+          <div class="d-flex justify-content-between">
+            <label>Mot de passe</label>
+
+          </div>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Mot de passe est obligatoire!">
+              <nz-input-group>
+                <input
+                  formControlName="userPassword"
+                  [type]="passwordVisible ? 'text' : 'password'"
+                  nz-input
+                  name="userPassword"
+                  placeholder="Mot de passe"
+                />
+              </nz-input-group>
+              <ng-template #suffixTemplate>
+                <span
+                  nz-icon
+                  nzType="!passwordVisible ? 'eye-invisible' : 'eye'"
+                  (click)="passwordVisible = !passwordVisible"
+                ></span>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="forgot-password-container">
+          <a class="forgot-password-link" (click)="openModalAndSendRequest(validateForm.get('userEmail')?.value)">Mot de passe oublié?</a>
+        </div>
+        
+        <button class="bt-primary mt-3" type="submit" [disabled]="loading">
+          <ng-container *ngIf="!loading">Connexion</ng-container>
+          <ng-container *ngIf="loading">
+          </ng-container>
+        </button>
+      </form>
+      <app-mrest-password-modal [isVisible]="isVisible" (handleVisible)="handleCancel()"></app-mrest-password-modal>
+
+
+      
+    </div>
+   
+    

@@ -1,0 +1,106 @@
+<app-header></app-header>
+<br>
+<div class="form-container">
+
+<div class="contact container">
+  <div class="text-center"> <!-- Adding text-center class for center alignment -->
+    <h1 class="section-title">Profile info</h1>
+  </div>
+  <div class="container rounded bg-white mt-5 mb-0">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-3 border-right text-center">
+        <div class="p-3 py-5">
+          <img class="rounded-circle mb-3" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+          <span class="font-weight-bold d-block">{{userName}}</span>
+          <span class="text-black-50 d-block">{{userEmail}}</span>
+          <br><br>
+          <div class="text-right"> <!-- Changed class from "heading" to "text-right" -->
+            <a href="#" class="bt-second w-initial" style="text-align: center; display: flex; justify-content: center; align-items: center;" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Changer mot de passe</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<br>
+  <section id="contact">
+            <div class="contact-items">
+          <div class="contact-item">
+              <div class="icon">
+                  <img
+                  src="https://img.icons8.com/bubbles/100/000000/employee-card.png" />
+                
+                </div>
+            <div class="contact-info">
+              <h1>Nom</h1>
+              <h2>{{userName}}</h2>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <img  
+                src="https://img.icons8.com/bubbles/100/000000/new-post.png"
+              />
+            </div>
+            <div class="contact-info">
+              <h1>Email</h1>
+              <h6>{{userEmail}}</h6>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <img
+                src="https://img.icons8.com/bubbles/100/000000/map-marker.png"
+              />
+            </div>
+            <div class="contact-info">
+              <h1>Address</h1>
+              <h2>{{userCity}}</h2>
+            </div>
+          </div>
+
+
+          
+        </div>
+      
+    </section>
+
+    
+    <br><br><br><br><br><br><br>
+
+
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Changer mot de passe</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="passwordChangeForm">
+              <div class="mb-3">
+                <label for="oldPassword" class="form-label">Ancien mot de passe</label>
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+              </div>
+              <div class="mb-3">
+                <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" minlength="6" required>
+                <div id="newPasswordHelp" class="form-text">Le mot de passe doit comporter au moins 6 caractères.</div>
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmer le nouveau mot de passe</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" required>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterCmntr()">Changer</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    

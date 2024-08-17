@@ -1,0 +1,14 @@
+.background {
+        background-color: white;
+
+}
+
+.center-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200%; /* Ensures the height of the anchor element */
+      }
+
+
+      

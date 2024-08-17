@@ -1,0 +1,101 @@
+<nav class="navbar">
+  <h1>BeeOrganized</h1>
+  <div class="search-box">
+    <button class="btn-search"><i class="fas fa-search"></i></button>
+    <input type="text" class="input-search" placeholder="Type to Search...">
+  </div>
+
+
+
+  <div class="actions">
+    <!-- Utilisateur Button only visible for Admin -->
+    <div *ngIf="isAdmin()">
+      <a href="/utilisateurs">
+        <button class="bouton-custom">Utilisateurs</button>
+      </a>
+    </div>
+
+    <!-- Projets Button visible for Member and ChefScrum -->
+
+    <div *ngIf="isMember() || isChefScrum()">
+      <a href="/profile">
+        <button class="bouton-custom">Profile</button>
+      </a>
+    </div>
+    <div *ngIf="isMember() || isChefScrum()">
+      <a href="/chat">
+        <button class="bouton-custom">Chat</button>
+      </a>
+    </div>
+    <div *ngIf="isMember() || isChefScrum()">
+      <a href="/equipe">
+        <button class="bouton-custom">Equipe</button>
+      </a>
+    </div>
+    <div *ngIf="isMember() || isChefScrum()">
+      <a href="/projects">
+        <button class="bouton-custom">Projets</button>
+      </a>
+    </div>
+   
+
+    <div class="avatar" nz-dropdown [nzDropdownMenu]="menu">
+      <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="Profile Photo" class="profile-photo">
+
+      <h5 class="username">
+      <span>{{userEmail}}
+      </span>
+      </h5>
+    </div>
+    
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable class="dropdown">
+        <li nz-menu-item (click)="handleLogout()">
+          <i class="ci-exit me-2"></i>
+          Déconnexion
+        </li>
+
+        <li nz-menu-item data-bs-toggle="modal" data-bs-target="#exampleModalToggle" *ngIf="isMember() || isChefScrum()">
+          <i class="ci-exit me-2" ></i>
+          Changer mot de passe
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+
+    
+  </div>
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Changer mot de passe</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="passwordChangeForm">
+            <div class="mb-3">
+              <label for="oldPassword" class="form-label">Ancien mot de passe</label>
+              <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+            </div>
+            <div class="mb-3">
+              <label for="newPassword" class="form-label">Nouveau mot de passe</label>
+              <input type="password" class="form-control" id="newPassword" name="newPassword" minlength="6" required>
+              <div id="newPasswordHelp" class="form-text" style="color: red;">Le mot de passe doit comporter au moins 6 caractères.</div>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmer le nouveau mot de passe</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" required>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="ajouterCmntr()">Changer</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+

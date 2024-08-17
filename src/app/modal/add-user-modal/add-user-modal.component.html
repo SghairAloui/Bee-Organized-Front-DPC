@@ -1,0 +1,105 @@
+<div class="form-container">
+<form class="login-form" [formGroup]="validateForm" (ngSubmit)="submitForm()" >
+    <div class="form-row">
+      <div class="form-group mt-5">
+        <label class="bold-label">Nom d'utilisateur :</label>
+  
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Nom d'utilisateur est obligatoire!">
+            <nz-input-group>
+              <input
+              formControlName="name"
+                nz-input
+                name="name"
+                placeholder="Nom d'utilisateur"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+  
+      
+    </div>
+  
+    <div class="form-group">
+      <label class="bold-label">Adresse email :</label>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Email est obligatoire!">
+          <nz-input-group>
+            <input
+          
+              formControlName="userEmail"
+              nz-input
+              name="userEmail"
+              placeholder="exemple@mail.com"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  
+    <div class="form-group">
+      <label class="bold-label">Role :</label>
+  
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Enter the right role of utilisateur!">
+          <nz-input-group>
+            <input
+              formControlName="userRole"
+              nz-input
+              name="userRole"
+              placeholder="role de l'utilisateur" 
+              />
+          </nz-input-group>
+          </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="form-group">
+      <label class="bold-label">Adresse :</label>
+  
+      <nz-form-item>
+        <nz-form-control nzErrorTip="This champ is obligatoire!">
+          <nz-input-group>
+            <input
+              formControlName="userCity"
+              nz-input
+              name="userCity"
+              placeholder="Tunis"
+            />
+          </nz-input-group>
+          </nz-form-control>
+      </nz-form-item>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group">
+        <label class="bold-label">Mot de passe :</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Au moins 6 caractéres">
+            <nz-input-group>
+              <input
+                formControlName="userPassword"
+                name="userPassword"
+                [type]="passwordVisible ? 'text' : 'password'"
+                nz-input
+                placeholder="Mot de passe"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+     
+    </div>
+  
+    <div class="d-flex w-100">
+      <div class="d-flex justify-content-end w-100 ms-3">
+        <button type="submit" class="bt-primaryy mt-3 w-50" [disabled]="loading">
+          <ng-container *ngIf="!loading">Ajouter</ng-container>
+          <ng-container *ngIf="loading">
+          </ng-container>
+        </button>
+      </div>
+    </div>
+  </form>
+  </div>

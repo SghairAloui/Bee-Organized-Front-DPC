@@ -1,0 +1,112 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Ajouter un Ticket"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <form
+      class="login-form"
+      (ngSubmit)="submitForm()"
+      [formGroup]="validateForm"
+    >
+      <div class="form-row">
+        <div class="form-group">
+          <label class="bold-label">Titre de Ticket :</label>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Nom de ticket est obligatoire!">
+              <nz-input-group>
+                <input
+                  formControlName="title"
+                  nz-input
+                  name="nom"
+                  placeholder="Nom de ticket "
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="bold-label">Description :</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Description obligatoire!">
+            <nz-input-group>
+              <textarea
+                formControlName="description"
+                nz-input
+                name="description"
+                placeholder="Description Ticket"
+              ></textarea>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="form-group">
+        <label class="bold-label">Utilisateur affecté pour cette ticket :</label>
+        <nz-form-item>
+          <nz-select
+            nzPlaceHolder="Sélectionner un utilisateur"
+            nzShowSearch
+            nzAllowClear
+            formControlName="assignedUser"
+          >
+            <ng-container *ngFor="let user of users">
+              <nz-option
+                [nzLabel]="user.name || null"
+                [nzValue]="user.userEmail"
+              >
+              </nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-item>
+      </div>
+
+      <div class="form-group">
+        <label class="bold-label">Date de debut :</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="La date debut est obligatoire!">
+            <nz-input-group>
+              <input
+                formControlName="startDate"
+                nz-input
+                name="startDate"
+                type="date"
+                placeholder="date debut "
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="form-group">
+        <label class="bold-label">Date de fin :</label>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="La date fin est obligatoire!">
+            <nz-input-group>
+              <input
+                formControlName="endDate"
+                nz-input
+                name="endDate"
+                type="date"
+                placeholder="date fin "
+              />
+            </nz-input-group>
+            <div *ngIf="validateForm.hasError('dateRangeInvalid')">
+              <span class="error-message">La date de fin doit être supérieure à la date de début!</span>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="d-flex w-100 justify-content-end">
+        <button class="bt-primary w-fit-content mt-4" type="submit">
+          <i class="ci-plus_circle me-2"></i>
+          Ajouter
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</nz-modal>

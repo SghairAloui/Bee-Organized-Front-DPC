@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+<div class="dash-container">
+  <div class="heading">
+    <a href="/utilisateurs/ajout" class="bt-second w-initial" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+      Ajouter un utilisateur
+    </a>
+  </div>
+
+  <div class="table-container background">
+    <table class="table" style="background-color: #000000">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Adresse</th>
+          <th>role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.userEmail }}</td>
+          <td>{{ user.userCity }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let role of user.roles">{{ role.name }}</li>
+            </ul>
+          </td>
+          <td>
+            <i
+              class="fas fa-edit"
+              style="color: #9672F9; cursor: pointer"
+              (click)="navigateToModification(user)"
+            ></i>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <i class="fas fa-trash" style="color: red; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setSelectedUserId(user.userId, user.name)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer utilisateur</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de vouloir supprimer l'utilisateur <strong>{{ selectedUserName }}</strong> ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()" data-bs-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
